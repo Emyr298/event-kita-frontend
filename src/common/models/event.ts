@@ -7,10 +7,11 @@ export interface Event {
   category: string,
   description: string,
   location: string,
-  start_time: Date,
-  end_time: Date,
+  start_time: string,
+  end_time: string,
   user: User,
   image_url: string,
+  participated_users: User[],
 }
 
 export enum Category {

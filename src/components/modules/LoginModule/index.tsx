@@ -51,8 +51,8 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
   const authenticateWithGoogle = async () => {
     const authToken = await authenticateGoogle();
     if (authToken) {
-      cookies.remove('token');
-      cookies.set('token', authToken);
+      cookies.remove('token', { path: '/' });
+      cookies.set('token', authToken, { path: '/' });
       router.replace('/');
     } else {
       pushNotification({text: 'Unable to login with Google', time: new Date()});

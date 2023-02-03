@@ -90,7 +90,7 @@ export const notProfileSetGSSP = async (context: GetServerSidePropsContext): Pro
 export interface GSSPResult {
   props?: {
     userInfo: UserInformation,
-    event?: Event,
+    extra?: object,
   },
   notFound?: boolean,
   redirect?: {

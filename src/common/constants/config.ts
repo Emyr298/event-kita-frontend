@@ -5,5 +5,6 @@ export const config = {
     userInformation: 'http://localhost:3001/auth',
     setProfile: 'http://localhost:3001/auth/set-profile',
     events: 'http://localhost:3001/events',
+    eventJoin: 'http://localhost:3001/events/join',
   },
 };

@@ -17,7 +17,9 @@ export default function EventsPage({ userInfo }: EventsPageProps) {
       </Head>
       <NavBar userInfo={userInfo} />
       <div className='h-[64px]'></div>
-      <EventsModule/>
+      <EventsModule
+        userInfo={userInfo}
+      />
     </>
   )
 }

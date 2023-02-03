@@ -5,3 +5,7 @@ export const formatDate = (date: Date) => {
   
   return day + '/' + month + '/' + year;
 }
+
+export const formatDateInput = (date: Date) => {
+  return date.toISOString().split('T')[0];
+}

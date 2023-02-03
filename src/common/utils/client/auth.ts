@@ -19,7 +19,7 @@ export const authenticateGoogle = async function(): Promise<string | undefined> 
 
 export const logoutUser = async function(): Promise<void> {
   const cookies = new Cookies();
-  cookies.remove('token');
+  cookies.remove('token', { path: '/' });
 };
 
 interface SetUserProfile {

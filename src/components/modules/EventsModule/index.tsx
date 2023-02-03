@@ -5,12 +5,15 @@ import { EventBox } from '@/components/elements/EventBox';
 import { fetchAllEvents, FetchAllEvents } from '@/common/utils/client/events';
 import { Event } from '@/common/models/event';
 import { formatDate } from '@/common/utils/client/format';
+import { UserInformation } from '@/common/utils/server/auth';
 
 const emptyCategoryValue = 'Choose Category';
 
-export interface EventsModuleProps {};
+export interface EventsModuleProps {
+  userInfo: UserInformation,
+};
 
-export const EventsModule : React.FC<EventsModuleProps> = ({}) => {
+export const EventsModule : React.FC<EventsModuleProps> = ({userInfo}) => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState(emptyCategoryValue);
   const [orderBy, setOrderBy] = useState('byParticipants');
@@ -24,7 +27,6 @@ export const EventsModule : React.FC<EventsModuleProps> = ({}) => {
     const curDate = new Date();
     curDate.setHours(0, 0, 0, 0);
     const queryParams: FetchAllEvents = {
-      laterThan: curDate.toISOString(),
       orderBy: orderBy,
       pageNumber: 1,
       contentPerPage: 10,
@@ -81,14 +83,17 @@ export const EventsModule : React.FC<EventsModuleProps> = ({}) => {
           ))
         }
       </div>
-      <div className='fixed bottom-0 right-0 m-4'>
-        <Link href='/events/create'>
-          <Button
-            text='Create Event'
-            className='font-bold'
-          />
-        </Link>
-      </div>
+      {
+        userInfo.status.includes('profile set') ?
+        <div className='fixed bottom-0 right-0 m-4'>
+          <Link href='/events/create'>
+            <Button
+              text='Create Event'
+              className='font-bold'
+            />
+          </Link>
+        </div> : null
+      }
     </div>
   );
 };
