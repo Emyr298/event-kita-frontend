@@ -4,10 +4,15 @@ import Link from 'next/link';
 import { styles } from '@/common/constants/styles';
 import { config } from '@/common/constants/config';
 import { Notification, Notifications } from '@/components/elements/Notifications';
+import { authenticateGoogle } from '@/common/utils/client/auth';
+import { useRouter } from 'next/router';
+import Cookies from 'universal-cookie';
 
 export interface LoginModuleProps {};
 
 export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
+  const cookies = new Cookies();
+  const router = useRouter();
   const [notifications, setNotifications] = useState(new Array<Notification>());
   
   useEffect(() => {
@@ -20,7 +25,7 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  function pushNotification(newNotif: Notification) {
+  const pushNotification = (newNotif: Notification) => {
     setNotifications((prevArr) => {
       const newArr = [...prevArr];
       if (newArr.length === config.maxNotifications) {
@@ -31,7 +36,7 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
     });
   }
   
-  function popExpiredNotification() {
+  const popExpiredNotification = () => {
     setNotifications((prevArr) => {
       const newArr = new Array<Notification>();
       for (let i = 0; i < prevArr.length; i++) {
@@ -41,6 +46,17 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
       }
       return newArr;
     });
+  }
+  
+  const authenticateWithGoogle = async () => {
+    const authToken = await authenticateGoogle();
+    if (authToken) {
+      cookies.remove('token');
+      cookies.set('token', authToken);
+      router.replace('/');
+    } else {
+      pushNotification({text: 'Unable to login with Google', time: new Date()});
+    }
   }
   
   return (
@@ -59,13 +75,16 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
             <h1 className='text-center text-3xl'>Login to <span className='font-bold'>Event</span>Kita</h1>
             <form className='w-full flex flex-col gap-2'>
               <TextInputField
-                text='Username'
+                text='Email'
                 className='w-full block'
+                name='email'
+                type='email'
               />
               <TextInputField
                 text='Password'
                 className='w-full block'
-                isPassword={true}
+                name='password'
+                type='password'
               />
               <Button
                 text='Login'
@@ -77,9 +96,7 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
               <Button
                 text='Login with Google'
                 className='w-full text-white font-bold'
-                onPressed={() => {
-                  pushNotification({text: 'Test Notification', time: new Date()});
-                }}
+                onPressed={authenticateWithGoogle}
               />
               <span>{`Don't have an account? `}<Link href='/register' style={{color: styles.mainColorDark}}>Register</Link></span>
             </div>

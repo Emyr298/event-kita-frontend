@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import { LoginModule } from '@/components'
+import { GetServerSidePropsContext } from 'next';
+import { nonLoggedInOnly } from '@/common/utils/server/gsspShortcuts';
 
 export default function LoginPage() {
   return (
@@ -11,3 +13,7 @@ export default function LoginPage() {
     </>
   )
 }
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  return await nonLoggedInOnly(context);
+};
