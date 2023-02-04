@@ -77,11 +77,11 @@ export const EditEventModule : React.FC<EditEventModuleProps> = ({ userInfo, eve
   }
   
   return (
-    <div className='w-full h-[calc(100vh-64px)] flex items-center justify-center'>
-      <div className='w-[1000px] p-4 bg-white drop-shadow border-[1px] border-gray-200 rounded-xl'>
+    <div className='w-full lg:h-[calc(100vh-64px)] lg:flex lg:items-center lg:justify-center'>
+      <div className='lg:w-[1000px] p-4 bg-white lg:drop-shadow lg:border-[1px] lg:border-gray-200 lg:rounded-xl'>
         <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-4 items-center'>
           <h1 className='font-bold text-2xl'>Edit Event</h1>
-          <div className='w-full flex flex-row items-stretch gap-4'>
+          <div className='w-full flex flex-col lg:flex-row items-stretch gap-4'>
             <div className='w-full flex flex-col gap-2 items-center'>
               <div className='w-full h-[200px] rounded-xl overflow-hidden'>
                 <Image
@@ -167,7 +167,7 @@ export const EditEventModule : React.FC<EditEventModuleProps> = ({ userInfo, eve
                 </div>
               </div>
               <div className='w-full flex flex-row justify-between gap-2'>
-                <div className='w-full'>
+                <div className='w-[45%] lg:w-full'>
                   <input
                     type='date'
                     className='w-full p-2 border-2 border-gray-300 rounded-lg outline-none'
@@ -187,7 +187,7 @@ export const EditEventModule : React.FC<EditEventModuleProps> = ({ userInfo, eve
                   }
                 </div>
                 <span className='block text-3xl text-gray-500'>-</span>
-                <div className='w-full'>
+                <div className='w-[45%] lg:w-full'>
                   <input
                     type='date'
                     className='w-full p-2 border-2 border-gray-300 rounded-lg outline-none'
@@ -228,7 +228,7 @@ export const EditEventModule : React.FC<EditEventModuleProps> = ({ userInfo, eve
                 }
               </div>
             </div>
-            <div className='border-[1px] border-gray-200 bg-black'></div>
+            <div className='border-[1px] border-gray-200 bg-black hidden lg:block'></div>
             <div className='w-full'>
               <div className='w-full h-full'>
                 <textarea

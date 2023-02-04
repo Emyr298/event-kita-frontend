@@ -45,8 +45,8 @@ export const EventDetailsModule : React.FC<EventDetailsModuleProps> = ({ userInf
   }
   
   return (
-    <div className='w-full flex flex-row justify-center my-10'>
-      <div className='w-[500px] p-4 bg-white drop-shadow border-[1px] border-gray-200 rounded-xl flex flex-col gap-4'>
+    <div className='w-full flex flex-row justify-center lg:my-10'>
+      <div className='w-full lg:w-[500px] p-4 bg-white lg:drop-shadow lg:border-[1px] lg:border-gray-200 lg:rounded-xl flex flex-col gap-4'>
         <h1 className='font-bold text-2xl text-center'>{event.name}</h1>
         <div className='w-full flex flex-col gap-2 items-center'>
           <div className='w-full h-[200px] rounded-xl overflow-hidden'>

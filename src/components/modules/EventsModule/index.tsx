@@ -38,18 +38,18 @@ export const EventsModule : React.FC<EventsModuleProps> = ({userInfo}) => {
   }
   
   return (
-    <div>
+    <div className='pb-6'>
       <div className='p-6'>
         <form>
-          <div className='h-[60px] p-[0.3rem] bg-white drop-shadow border-[1px] border-gray-200 rounded-xl flex flex-row items-stretch outline-none gap-2'>
+          <div className='lg:h-[60px] p-[0.3rem] bg-white drop-shadow border-[1px] border-gray-200 rounded-xl flex flex-col lg:flex-row items-stretch outline-none gap-2'>
             <input
               type='text'
               placeholder='Search...'
-              className='w-[50%] p-2 border-gray-200 border-2 rounded-xl outline-none'
+              className='w-full lg:w-[50%] p-2 border-gray-200 border-2 rounded-xl outline-none'
               onChange={(event) => setName(event.target.value)}
             />
             <select
-              className='w-[25%] p-2 border-gray-200 border-2 rounded-xl outline-none'
+              className='w-full lg:w-[25%] p-2 border-gray-200 border-2 rounded-xl outline-none'
               onChange={(event) => setCategory(event.target.value)}
             >
               <option className='text-gray-400'>Choose Category</option>
@@ -59,7 +59,7 @@ export const EventsModule : React.FC<EventsModuleProps> = ({userInfo}) => {
               <option className='text-black' value='education'>Education</option>
             </select>
             <select
-              className='w-[25%] p-2 border-gray-200 border-2 rounded-xl outline-none'
+              className='w-full lg:w-[25%] p-2 border-gray-200 border-2 rounded-xl outline-none'
               onChange={(event) => setOrderBy(event.target.value)}
             >
               <option value='byParticipants'>Popular</option>
@@ -68,7 +68,7 @@ export const EventsModule : React.FC<EventsModuleProps> = ({userInfo}) => {
             {
               userInfo.information ?
               <select
-                className='w-[25%] p-2 border-gray-200 border-2 rounded-xl outline-none'
+                className='w-full lg:w-[25%] p-2 border-gray-200 border-2 rounded-xl outline-none'
                 onChange={(event) => setIsMyEvent(event.target.value === 'allEvents' ? false : true)}
               >
                 <option value='allEvents'>All Events</option>
@@ -78,7 +78,7 @@ export const EventsModule : React.FC<EventsModuleProps> = ({userInfo}) => {
           </div>
         </form>
       </div>
-      <div className='px-6 flex flex-row flex-wrap gap-4'>
+      <div className='px-6 flex flex-row flex-wrap gap-4 justify-center'>
         {
           events.map((event, i) => (
             <EventBox

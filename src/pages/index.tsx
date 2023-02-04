@@ -25,5 +25,11 @@ export default function HomePage({ userInfo }: HomePageProps) {
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  return await generalGSSP(context);
+  // return await generalGSSP(context);
+  return {
+    redirect: {
+      destination: '/events',
+      permanent: false,
+    },
+  };
 };

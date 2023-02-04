@@ -42,7 +42,7 @@ export const SetProfileModule : React.FC<SetProfileModuleProps> = ({}) => {
   return (
     <>
       <div className='w-full h-screen flex flex-row justify-evenly'>
-        <div className='w-[50%] flex justify-center items-center'>
+        <div className='w-full lg:w-[50%] flex justify-center items-center'>
           <div className='m-4 w-[400px] flex flex-col gap-4 items-center'>
             <h1 className='text-center text-3xl'>Set up your <span className='font-bold'>Profile</span></h1>
             <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-2 items-center'>
@@ -134,7 +134,7 @@ export const SetProfileModule : React.FC<SetProfileModuleProps> = ({}) => {
             </form>
           </div>
         </div>
-        <div className='w-[50%] bg-gray-200'></div>
+        <div className='w-[50%] bg-gray-200 hidden lg:block'></div>
       </div>
     </>
   );

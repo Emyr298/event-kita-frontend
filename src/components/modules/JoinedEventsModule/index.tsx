@@ -14,7 +14,7 @@ export interface JoinedEventsModuleProps {
 
 export const JoinedEventsModule : React.FC<JoinedEventsModuleProps> = ({userInfo, events}) => {
   return (
-    <div className='p-6 flex flex-row flex-wrap gap-4'>
+    <div className='p-6 flex flex-row flex-wrap gap-4 justify-center'>
       {
         events.map((event, i) => (
           <EventBox

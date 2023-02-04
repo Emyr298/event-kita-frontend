@@ -67,13 +67,13 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
             notifications={notifications}
           />
         </div>
-        <div className='w-[50%] flex justify-center items-center'>
+        <div className='w-[100%] lg:w-[50%] flex justify-center items-center'>
           <div className='absolute top-2 left-2'>
             <Link href='/' style={{color: styles.linkTextColor}}>Back to Home</Link>
           </div>
           <div className='m-4 w-[300px] flex flex-col gap-4 items-center'>
             <h1 className='text-center text-3xl'>Login to <span className='font-bold'>Event</span>Kita</h1>
-            <form className='w-full flex flex-col gap-2'>
+            {/* <form className='w-full flex flex-col gap-2'>
               <TextInputField
                 text='Email'
                 className='w-full block'
@@ -90,19 +90,19 @@ export const LoginModule : React.FC<LoginModuleProps> = ({}) => {
                 text='Login'
                 className='w-full text-white font-bold'
               />
-            </form>
-            <div className='w-full border-[1px] border-gray-200'></div>
+            </form> */}
+            {/* <div className='w-full border-[1px] border-gray-200'></div> */}
             <div className='w-full flex flex-col gap-2 items-center'>
               <Button
                 text='Login with Google'
                 className='w-full text-white font-bold'
                 onPressed={authenticateWithGoogle}
               />
-              <span>{`Don't have an account? `}<Link href='/register' style={{color: styles.mainColorDark}}>Register</Link></span>
+              {/* <span>{`Don't have an account? `}<Link href='/register' style={{color: styles.mainColorDark}}>Register</Link></span> */}
             </div>
           </div>
         </div>
-        <div className='w-[50%] bg-gray-200'></div>
+        <div className='w-[50%] bg-gray-200 hidden lg:block'></div>
       </div>
     </>
   );
