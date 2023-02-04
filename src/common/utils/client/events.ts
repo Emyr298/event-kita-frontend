@@ -57,8 +57,7 @@ export interface FetchAllEvents {
   name?: string,
   category?: string,
   orderBy?: string,
-  pageNumber: number,
-  contentPerPage: number,
+  userId?: string,
 }
 
 export const fetchAllEvents = async function(queryParams: FetchAllEvents): Promise<Event[]> {

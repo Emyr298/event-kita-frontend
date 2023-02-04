@@ -17,22 +17,22 @@ export const EventsModule : React.FC<EventsModuleProps> = ({userInfo}) => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState(emptyCategoryValue);
   const [orderBy, setOrderBy] = useState('byParticipants');
+  const [isMyEvent, setIsMyEvent] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
   
   useEffect(() => {
-    refetchEvents(name, category, orderBy);
-  } , [name, category, orderBy]);
+    refetchEvents(name, category, orderBy, isMyEvent);
+  } , [name, category, orderBy, isMyEvent]);
   
-  async function refetchEvents(name: string, category: string, orderBy: string) {
+  async function refetchEvents(name: string, category: string, orderBy: string, isMyEvent: boolean) {
     const curDate = new Date();
     curDate.setHours(0, 0, 0, 0);
     const queryParams: FetchAllEvents = {
       orderBy: orderBy,
-      pageNumber: 1,
-      contentPerPage: 10,
     };
     if (name !== '') queryParams.name = name;
     if (category !== emptyCategoryValue) queryParams.category = category;
+    if (isMyEvent !== false && userInfo.information) queryParams.userId = userInfo.information.id;
     const events = await fetchAllEvents(queryParams);
     setEvents(events);
   }
@@ -65,6 +65,16 @@ export const EventsModule : React.FC<EventsModuleProps> = ({userInfo}) => {
               <option value='byParticipants'>Popular</option>
               <option value='byStartTime'>Starting</option>
             </select>
+            {
+              userInfo.information ?
+              <select
+                className='w-[25%] p-2 border-gray-200 border-2 rounded-xl outline-none'
+                onChange={(event) => setIsMyEvent(event.target.value === 'allEvents' ? false : true)}
+              >
+                <option value='allEvents'>All Events</option>
+                <option value='myEvents'>My Events</option>
+              </select> : null
+            }
           </div>
         </form>
       </div>
