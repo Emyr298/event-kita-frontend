@@ -26,6 +26,11 @@ export const NavBar : React.FC<NavBarProps> = ({ userInfo }) => {
           <div className='flex flex-row items-center gap-4'>
             <Link href='/'><span className='block'>Home</span></Link>
             <Link href='/events'><span className='block'>Events</span></Link>
+            {
+              userInfo.information ?
+              <Link href='/events/joined'><span className='block'>Joined Events</span></Link>
+              : null
+            }
           </div>
         </div>
         {

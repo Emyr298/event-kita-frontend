@@ -22,3 +22,23 @@ export const fetchEventById = async function(id: string, reqCookie: string): Pro
     return null;
   }
 }
+
+export const fetchJoinedEvents = async function(reqCookie: string): Promise<Event[]> {
+  const cookies = new Cookies(reqCookie);
+  const token = cookies.get('token');
+  try {
+    console.log(`${config.apiUrl.eventJoin}`);
+    const event: AxiosResponse<Event[]> = await axios.get(`${config.apiUrl.eventJoin}/get`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (isSuccess(event.status)) {
+      return event.data;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    return [];
+  }
+}
